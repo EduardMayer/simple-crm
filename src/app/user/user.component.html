@@ -1,5 +1,4 @@
 <div class="user-container">
-
     <mat-card>
         <table class="user-table">
             <tr>
@@ -7,26 +6,17 @@
                 <th>E-Mail</th>
                 <th>City</th>
             </tr>
-            <tr>
-                <td>wqe</td>
-                <td>wqe</td>
-                <td>wqe</td>
-            </tr>
-
-            <tr>
-                <td>wqe</td>
-                <td>wqe</td>
-                <td>wqe</td>
+            <tr *ngFor="let user of allUsers" [routerLink]="['/user/' + user.userId]">
+                <td>{{ user.firstName }} {{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.city }}</td>
             </tr>
         </table>
-      </mat-card>
-
-
+    </mat-card>
     <div class="add-user-button">
-        <button (click)="openDialog()" mat-fab matTooltip="Primary" color="primary" matTooltip="Add new User"
+        <button (click)="openDialog()" mat-fab matTooltip="Add new User" color="primary"
             [matTooltipPosition]="position.value!">
             <mat-icon>add</mat-icon>
         </button>
     </div>
-
 </div>
