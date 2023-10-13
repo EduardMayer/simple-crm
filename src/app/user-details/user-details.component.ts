@@ -38,10 +38,8 @@ export class UserDetailsComponent {
   }
 
   editUserDetail(){
-    
   }
 
   editMenu(){
-    
   }
 }
