@@ -28,6 +28,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { DialogEditAddressComponent } from './dialog-edit-address/dialog-edit-address.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,7 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     DialogAddUserComponent,
     UserDetailsComponent,
     DialogEditAddressComponent,
-    DialogEditUserComponent
+    DialogEditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     MatTableModule,
     MatMenuModule,
     FormsModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],

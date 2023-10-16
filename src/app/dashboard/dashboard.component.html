@@ -1,1 +1,20 @@
-<p>dashboard works!</p>
+
+    <div *ngIf="data" class="card-news-container">
+        <mat-card *ngFor="let article of data.articles.slice(0, 10)"class="card-container">
+        <mat-card-header>
+          <mat-card-title>{{ article.title }}</mat-card-title>
+          <mat-card-subtitle>{{ article.source.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="article.urlToImage" alt="Article Image">
+        <mat-card-content>
+          <p>{{ article.description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button [href]="article.url" target="_blank">Read More</a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  
+<div *ngIf="!data">
+    <p>Loading data...</p>
+</div>

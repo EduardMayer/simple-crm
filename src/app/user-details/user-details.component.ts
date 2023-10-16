@@ -12,7 +12,7 @@ import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.co
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent {
-  userId!: string | null;
+  userId!: any;
   user: User = new User(); 
   trigger: any;
 
@@ -44,11 +44,13 @@ export class UserDetailsComponent {
   editMenu(){
     const dialog = this.dialog.open(DialogEditAddressComponent);
     dialog.componentInstance.user = new User(this.user);
+    dialog.componentInstance.userId = this.userId;
   }
 
   editUserDetail(){
    const dialog = this.dialog.open(DialogEditUserComponent);
    dialog.componentInstance.user = new User(this.user);
+   dialog.componentInstance.userId = this.userId;
    }
  
 }

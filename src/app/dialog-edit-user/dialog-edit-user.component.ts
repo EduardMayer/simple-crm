@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
 import { User } from 'src/models/user.class';
 
 @Component({
@@ -8,16 +9,31 @@ import { User } from 'src/models/user.class';
   styleUrls: ['./dialog-edit-user.component.scss']
 })
 export class DialogEditUserComponent {
-  
-  
-  user: User = new User(); 
+  userId!: string;
+  user: User = new User();
   loading = false;
   birthDate!: Date;
+
+  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, private firestore: Firestore) {}
+
+  async updateUser() {
+    try {
+      const userDocRef = doc(this.firestore, 'users', this.userId);
+      const updatedUserData = {
+        ...this.user.toJSON(),
+      };
+      await updateDoc(userDocRef, updatedUserData);
+      this.loading = false;
+      this.dialogRef.close();
+      this.refreshPage();
+    } catch (error) {
+      console.error('Error updating user:', error);
+      this.loading = false;
+    }
+   
+  }
   
-  
-   constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>) {}
-  
-    addUser(){
-  
-    };
+  refreshPage() {
+    window.location.reload();
+  }
 }
